@@ -16,9 +16,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.util.List;
 import java.util.concurrent.CompletableFuture;
-import java.util.stream.Collectors;
 
 public class Main extends Application {
 
@@ -89,10 +87,8 @@ public class Main extends Application {
         Preconditions.checkNotNull(collection, "The collection should already be in memory");
         searchHBox.setDisable(true);
         String searchTerm = searchField.getText();
-        List<ArtifactRecord> result = collection.stream()
-                .filter(artifactRecord -> artifactRecord.getTitle().contains(searchTerm))
-                .collect(Collectors.toList());
-        resultCount.setText(String.valueOf(result.size()));
+        int result = collection.countRecordsByTitleQuery(searchTerm);
+        resultCount.setText(String.valueOf(result));
         searchHBox.setDisable(false);
     }
 }
