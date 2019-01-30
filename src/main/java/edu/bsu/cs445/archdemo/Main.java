@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -38,6 +39,10 @@ public class Main extends Application {
     @FXML
     @SuppressWarnings("unused") // This field is used by FXML, so suppress the warning
     private Label resultCount;
+
+    @FXML
+    @SuppressWarnings("unused") // This field is used by FXML, so suppress the warning
+    private HBox searchHBox;
 
     private ArtifactRecordCollection collection;
 
@@ -82,14 +87,12 @@ public class Main extends Application {
     @FXML
     public void search() {
         Preconditions.checkNotNull(collection, "The collection should already be in memory");
-        searchButton.setDisable(true);
-        searchField.setDisable(true);
+        searchHBox.setDisable(true);
         String searchTerm = searchField.getText();
         List<ArtifactRecord> result = collection.stream()
                 .filter(artifactRecord -> artifactRecord.getTitle().contains(searchTerm))
                 .collect(Collectors.toList());
         resultCount.setText(String.valueOf(result.size()));
-        searchButton.setDisable(false);
-        searchField.setDisable(false);
+        searchHBox.setDisable(false);
     }
 }
