@@ -15,9 +15,6 @@ import java.util.concurrent.CompletableFuture;
 
 public class Main extends Application {
 
-    private static final int WIDTH = 300;
-    private static final int HEIGHT = 275;
-
     private ArtifactRecordCollection collection;
 
     @Override
@@ -43,7 +40,7 @@ public class Main extends Application {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        Scene scene = new Scene(root, WIDTH, HEIGHT);
+        Scene scene = new Scene(root);
         stage.setTitle("Naive DOMA Search");
         stage.setScene(scene);
         stage.show();
