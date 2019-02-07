@@ -7,7 +7,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<fx:root type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1"
+    prefWidth="300" prefHeight="300">
     <Label text="Enter Search Below." BorderPane.alignment="CENTER" />
     <HBox fx:id="searchHBox">
         <TextField fx:id="searchField" onAction="#search" />
@@ -18,4 +19,5 @@
         <Label fx:id="resultCount" text="0"/>
         <Label text=" results"/>
     </HBox>
+    <VBox fx:id="resultBox"></VBox>
 </fx:root>

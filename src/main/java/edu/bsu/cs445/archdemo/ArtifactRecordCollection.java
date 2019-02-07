@@ -1,6 +1,7 @@
 package edu.bsu.cs445.archdemo;
 
 import com.google.common.base.Preconditions;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -36,9 +37,14 @@ class ArtifactRecordCollection {
     }
 
     int countRecordsByTitleQuery(String query) {
+        List<ArtifactRecord> result = searchTitles(query);
+        return result.size();
+    }
+
+    List<ArtifactRecord> searchTitles(String query) {
         List<ArtifactRecord> result = items.stream()
                 .filter(artifactRecord -> artifactRecord.getTitle().contains(query))
                 .collect(Collectors.toList());
-        return result.size();
+        return ImmutableList.copyOf(result);
     }
 }

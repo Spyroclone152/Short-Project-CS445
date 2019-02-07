@@ -11,6 +11,7 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 
 public class SearchPane extends VBox {
 
@@ -29,6 +30,10 @@ public class SearchPane extends VBox {
     @FXML
     @SuppressWarnings("unused") // This field is used by FXML, so suppress the warning
     private HBox searchHBox;
+
+    @FXML
+    @SuppressWarnings("unused") // This field is used by FXML, so suppress the warning
+    private VBox resultBox;
 
     private final ArtifactRecordCollection collection;
 
@@ -52,8 +57,13 @@ public class SearchPane extends VBox {
         Preconditions.checkNotNull(collection, "The collection should already be in memory");
         searchHBox.setDisable(true);
         String searchTerm = searchField.getText();
-        int result = collection.countRecordsByTitleQuery(searchTerm);
-        resultCount.setText(String.valueOf(result));
+        List<ArtifactRecord> records = collection.searchTitles(searchTerm);
+        resultBox.getChildren().clear();
+        if (records.size() > 0) {
+            ArtifactRecord record = records.get(0);
+            resultBox.getChildren().add(new ArtifactView(record));
+        }
+        resultCount.setText(String.valueOf(records.size()));
         searchHBox.setDisable(false);
     }
 

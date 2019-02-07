@@ -3,6 +3,8 @@ package edu.bsu.cs445.archdemo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 class ArtifactRecordCollectionTest {
 
     @Test
@@ -35,5 +37,15 @@ class ArtifactRecordCollectionTest {
                 ArtifactRecord.withTitle("Fool"));
         int count = collection.countRecordsByTitleQuery("Foo");
         Assertions.assertEquals(2, count);
+    }
+
+    @Test
+    void testSearchTitles() {
+        final String testTitle = "Foo";
+        ArtifactRecordCollection collection = ArtifactRecordCollection.of(
+                ArtifactRecord.withTitle(testTitle)
+        );
+        List<ArtifactRecord> result = collection.searchTitles(testTitle);
+        Assertions.assertEquals(testTitle, result.get(0).getTitle());
     }
 }

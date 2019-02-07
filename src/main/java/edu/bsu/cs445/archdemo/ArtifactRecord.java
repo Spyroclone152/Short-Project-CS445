@@ -21,8 +21,13 @@ class ArtifactRecord {
     @XmlElement(name="Title")
     private String title;
 
+    @SuppressWarnings("unused") // Not set in source code, but set through JAXB.
+    @XmlElement(name="CONTENTdm_File_Name")
+    private String fileName;
+
     String getTitle() {
         return title;
     }
 
+    String getFileName() { return fileName; }
 }
