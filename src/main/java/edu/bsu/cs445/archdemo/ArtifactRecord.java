@@ -18,16 +18,19 @@ class ArtifactRecord {
     }
 
     @SuppressWarnings("unused") // Not set in source code, but set through JAXB.
-    @XmlElement(name="Title")
+    @XmlElement(name="Title") //the green is what the actual element is in the fxml
     private String title;
+
+    @XmlElement(name="Date_Made") //the green is what the actual element is in the fxml
+    private String date;
 
     @SuppressWarnings("unused") // Not set in source code, but set through JAXB.
     @XmlElement(name="CONTENTdm_File_Name")
     private String fileName;
 
-    String getTitle() {
-        return title;
-    }
+    String getTitle() { return title; }
 
     String getFileName() { return fileName; }
+
+    String getDate() { return date; }
 }
