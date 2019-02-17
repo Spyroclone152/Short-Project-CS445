@@ -21,8 +21,11 @@ class ArtifactRecord {
     @XmlElement(name="Title") //the green is what the actual element is in the fxml
     private String title;
 
-    @XmlElement(name="Date_Made") //the green is what the actual element is in the fxml
-    private String date;
+    @XmlElement(name="Subject_LCSH") //the green is what the actual element is in the fxml
+    private String artworkSubject;
+
+    @XmlElement(name="Period_Style") //the green is what the actual element is in the fxml
+    private String periodStyle;
 
     @SuppressWarnings("unused") // Not set in source code, but set through JAXB.
     @XmlElement(name="CONTENTdm_File_Name")
@@ -32,5 +35,7 @@ class ArtifactRecord {
 
     String getFileName() { return fileName; }
 
-    String getDate() { return date; }
+    String getArtworkSubject() { return artworkSubject; }
+
+    String getPeriodStyle() { return periodStyle; }
 }
