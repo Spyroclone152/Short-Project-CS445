@@ -47,4 +47,11 @@ class ArtifactRecordCollection {
                 .collect(Collectors.toList());
         return ImmutableList.copyOf(result);
     }
+
+    List<ArtifactRecord> filterArtworkSubject(String query) {
+        List<ArtifactRecord> result = items.stream()
+                .filter(artifactRecord -> artifactRecord.getArtworkSubject().contains(query))
+                .collect(Collectors.toList());
+        return ImmutableList.copyOf(result);
+    }
 }
