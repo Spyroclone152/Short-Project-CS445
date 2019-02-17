@@ -33,6 +33,10 @@ public class SearchPane extends VBox {
 
     @FXML
     @SuppressWarnings("unused") // This field is used by FXML, so suppress the warning
+    private HBox ArtworkSubject;
+
+    @FXML
+    @SuppressWarnings("unused") // This field is used by FXML, so suppress the warning
     private VBox resultBox;
 
     private final ArtifactRecordCollection collection;
@@ -54,6 +58,25 @@ public class SearchPane extends VBox {
     @SuppressWarnings("unused") // This method is actually used via searchPane.fxml.
     @FXML
     public void search() {
+        Preconditions.checkNotNull(collection, "The collection should already be in memory");
+        searchHBox.setDisable(true);
+        String searchTerm = searchField.getText();
+        List<ArtifactRecord> records = collection.searchTitles(searchTerm);
+        resultBox.getChildren().clear();
+        if (records.size() > 0) {
+
+            for(int i=0; i<records.size(); i++){
+                ArtifactRecord results = records.get(i);
+                resultBox.getChildren().add(new ArtifactView(results));
+            }
+        }
+        resultCount.setText(String.valueOf(records.size()));
+        searchHBox.setDisable(false);
+    }
+
+    @SuppressWarnings("unused") // This method is actually used via searchPane.fxml.
+    @FXML
+    public void filter() {
         Preconditions.checkNotNull(collection, "The collection should already be in memory");
         searchHBox.setDisable(true);
         String searchTerm = searchField.getText();
