@@ -41,6 +41,11 @@ class ArtifactRecordCollection {
         return result.size();
     }
 
+    int countRecordsByArtworkSubject(String subject){ //NEW
+        List<ArtifactRecord> newResult = filterArtworkSubject(subject);
+        return newResult.size();
+    }
+
     List<ArtifactRecord> searchTitles(String query) {
         List<ArtifactRecord> result = items.stream()
                 .filter(artifactRecord -> artifactRecord.getTitle().contains(query))
@@ -48,9 +53,9 @@ class ArtifactRecordCollection {
         return ImmutableList.copyOf(result);
     }
 
-    List<ArtifactRecord> filterArtworkSubject(String query) {
+    List<ArtifactRecord> filterArtworkSubject(String subject) {
         List<ArtifactRecord> result = items.stream()
-                .filter(artifactRecord -> artifactRecord.getArtworkSubject().contains(query))
+                .filter(artifactRecord -> artifactRecord.getArtworkSubject().contains(subject))
                 .collect(Collectors.toList());
         return ImmutableList.copyOf(result);
     }

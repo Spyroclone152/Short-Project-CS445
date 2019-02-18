@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
@@ -18,7 +19,7 @@
     </HBox>
    <HBox fx:id="ArtworkSubject" prefHeight="100.0" prefWidth="200.0">
       <children>
-         <ToggleButton mnemonicParsing="false" text="Artwork Subject" />
+         <RadioButton fx:id="filterToggle1" mnemonicParsing="false" text="Art Subject" />
       </children>
    </HBox>
 

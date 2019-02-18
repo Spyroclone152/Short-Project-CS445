@@ -3,9 +3,7 @@ package edu.bsu.cs445.archdemo;
 import com.google.common.base.Preconditions;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -33,11 +31,11 @@ public class SearchPane extends VBox {
 
     @FXML
     @SuppressWarnings("unused") // This field is used by FXML, so suppress the warning
-    private HBox ArtworkSubject;
+    private VBox resultBox;
 
     @FXML
     @SuppressWarnings("unused") // This field is used by FXML, so suppress the warning
-    private VBox resultBox;
+    private RadioButton filterToggle1;
 
     private final ArtifactRecordCollection collection;
 
@@ -78,11 +76,11 @@ public class SearchPane extends VBox {
     @FXML
     public void filter() {
         Preconditions.checkNotNull(collection, "The collection should already be in memory");
-        searchHBox.setDisable(true);
-        String searchTerm = searchField.getText();
-        List<ArtifactRecord> records = collection.searchTitles(searchTerm);
+        filterToggle1.setSelected(false);
+        String filterTerm = "Child";
+        List<ArtifactRecord> records = collection.filterArtworkSubject(filterTerm);
         resultBox.getChildren().clear();
-        if (records.size() > 0) {
+        if (records.size() > 0 && filterToggle1.isSelected()){
 
             for(int i=0; i<records.size(); i++){
                 ArtifactRecord results = records.get(i);
@@ -90,7 +88,8 @@ public class SearchPane extends VBox {
             }
         }
         resultCount.setText(String.valueOf(records.size()));
-        searchHBox.setDisable(false);
+        filterToggle1.setSelected(false);
+        System.out.println("the artifact is filtered");
     }
 
 }
